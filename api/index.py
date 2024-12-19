@@ -1,11 +1,17 @@
-from flask import Flask
+from flask import Flask, redirect
 
 app = Flask(__name__)
 
-@app.route('/')
-def home():
-    return 'Hello, World!'
+app = Flask(
+    __name__,
+    static_url_path="",
+    static_folder="../static",
+    template_folder="../templates"
+)
 
-@app.route('/about')
-def about():
-    return 'About'
+@app.route("/")
+def index():
+    return redirect("https://github.com/noonomyen/class-web-application-development", 302)
+
+if __name__ == "__main__":
+    app.run(debug=True)
