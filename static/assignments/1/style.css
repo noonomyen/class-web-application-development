@@ -1,0 +1,42 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body div:first-child {
+    width: 600px;
+}
+
+h4 {
+    margin: 20px 0px;
+    text-align: center;
+}
+
+form {
+    background-color: #f7ebd9;
+    margin: 10px 100px;
+    padding: 10px;
+}
+
+form span:first-child {
+    font-weight: bold;
+}
+
+form table tr > td:first-child {
+    font-weight: bold;
+}
+
+form select {
+    padding: 5px;
+}
+
+form > div:last-child {
+    align-items: center;
+    text-align: center;
+}
+
+form > div > input:last-child {
+    margin-top: 5px;
+    font-size: 15px;
+    padding: 0px 10px;
+}
