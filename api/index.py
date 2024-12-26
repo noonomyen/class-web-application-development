@@ -1,4 +1,9 @@
+import sys
+sys.path.append("./api")
+
 from flask import Flask, redirect
+
+from calculator import calculator_blueprint
 
 app = Flask(__name__)
 
@@ -8,6 +13,8 @@ app = Flask(
     static_folder="../static",
     template_folder="../templates"
 )
+
+app.register_blueprint(calculator_blueprint, url_prefix="/assignments/2/calculator")
 
 @app.route("/")
 def index():

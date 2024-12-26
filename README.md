@@ -7,6 +7,7 @@ This repository is used to store and deploy assignments for my Web Application D
 | Date | Link | Type |
 | :-: | :-: | :-: |
 | 2024/12/19 | [index.html](https://noonomyen.github.io/class-web-application-development/assignments/1/index.html) | Static |
+| 2024/12/26 | [calculator](https://noonomyen.github.io/class-web-application-development/assignments/2/calculator) | Flask |
 
 ## Deployment
 
