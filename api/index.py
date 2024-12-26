@@ -1,6 +1,3 @@
-import sys
-sys.path.append("./api")
-
 from flask import Flask, redirect
 
 from calculator import calculator_blueprint
