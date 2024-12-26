@@ -40,4 +40,4 @@ def power(a: int, b: int, ):
 
 @calculator_blueprint.route("/modulo/<int:a>/<int:b>")
 def modulo(a: int, b: int, ):
-    return f"{a} % {b} = {a % b}"
+    return f"{a} % {b} = {'undefined' if b == 0 else a % b}"

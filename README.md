@@ -15,4 +15,4 @@ This repository is used to store and deploy assignments for my Web Application D
 - [noonomyen.github.io/class-web-application-development](https://noonomyen.github.io/class-web-application-development) (GitHub Action - Static HTML)
 - [class-web-application-development.noonomyen.com](https://class-web-application-development.noonomyen.com) (Vercel - Flask)
   - [class-web-application-development-git-main-noonomyens-projects.vercel.app](https://class-web-application-development-git-main-noonomyens-projects.vercel.app) (Vercel - main branch)
-- [std66122420120.pythonanywhere.com](https://std66122420120.pythonanywhere.com) (PythonAnywhere)
+- [std66122420120.pythonanywhere.com](https://std66122420120.pythonanywhere.com) (PythonAnywhere - Flask)
