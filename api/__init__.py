@@ -14,8 +14,7 @@ app = Flask(
     template_folder="../templates"
 )
 
-assert "SECRET_KEY" in environ, "Require SECRET_KEY in environment variables"
-app.secret_key = environ["SECRET_KEY"]
+app.secret_key = environ["SECRET_KEY"] if "SECRET_KEY" in environ else open("SECRET_KEY.txt", "r").read()
 
 curr_dir = Path(__file__).parent.resolve()
 

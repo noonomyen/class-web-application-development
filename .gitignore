@@ -2,6 +2,7 @@
 *.log
 *.pyc
 __pycache__
+SECRET_KEY.txt
 
 # Environments
 .env
