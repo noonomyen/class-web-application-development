@@ -6,20 +6,7 @@ __all__ = [
     "compatibility_status_page"
 ]
 
-status_pages: list[tuple[str, str, str]] = [("Dummy Blueprint", "/assignments/test", "Unsupport")]
-
-# dummy blueprint
-
-dummy_blueprint = Blueprint("dummy_blueprint", __name__)
-@dummy_blueprint.before_request
-def _compatibility_middleware_dummy_blueprint():
-    return f"This route is not supported for {dummy_blueprint.import_name + '.' + dummy_blueprint.name}", 404
-
-@dummy_blueprint.route("/")
-def _dummy_blueprint_root():
-    return "Test"
-
-#
+status_pages: list[tuple[str, str, bool]] = []
 
 def compatibility_middle(app: Flask, blueprint: Blueprint, serverless: bool):
     @blueprint.before_request
@@ -28,7 +15,7 @@ def compatibility_middle(app: Flask, blueprint: Blueprint, serverless: bool):
             return f"This route is not supported in serverless mode.<br>Name: {blueprint.import_name}<br>Path: {blueprint.url_prefix}", 404
 
     assert blueprint.url_prefix
-    status_pages.append((blueprint.name, blueprint.url_prefix, "Unsupport" if config.IS_SERVERLESS and not serverless else "OK"))
+    status_pages.append((blueprint.name, blueprint.url_prefix, serverless))
     app.register_blueprint(blueprint)
 
 compatibility_status_page = Blueprint("Compatibility Status", __name__)
@@ -55,11 +42,11 @@ def assignments():
                     <th>URL Prefix</th>
                     <th>Status</th>
                 </tr>
-                {% for page_name, url_prefix, status in status_pages %}
+                {% for page_name, url_prefix, serverless in status_pages %}
                 <tr>
                     <td>{{ page_name }}</td>
                     <td><a href="{{ url_prefix }}">{{ url_prefix }}</a></td>
-                    <td>{{ status }}</td>
+                    <td>{% if config.IS_SERVERLESS and not serverless %}Unsupport{% else %}OK{% endif %}</td>
                 </tr>
                 {% endfor %}
             </table>

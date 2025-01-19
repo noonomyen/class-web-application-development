@@ -1,7 +1,7 @@
 from os import environ
 from flask import Flask, redirect
 from pathlib import Path
-from api.compatibility_middle import compatibility_middle, compatibility_status_page, dummy_blueprint
+from api.compatibility_middle import compatibility_middle, compatibility_status_page
 
 __all__ = ["app"]
 
@@ -26,7 +26,6 @@ for file in (curr_dir / "blueprints").glob("*.py"):
         compatibility_middle(app, module.blueprint, module.serverless)
 
 app.register_blueprint(compatibility_status_page, url_prefix="/assignments")
-app.register_blueprint(dummy_blueprint, url_prefix="/assignments/test")
 
 @app.route("/")
 def index():
