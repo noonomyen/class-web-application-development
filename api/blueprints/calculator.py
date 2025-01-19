@@ -1,8 +1,18 @@
 from flask import Blueprint
 
-calculator_blueprint = Blueprint("calculator", __name__)
+__all__ = [
+    "serverless",
+    "blueprint"
+]
 
-@calculator_blueprint.route("/")
+serverless = True
+blueprint = Blueprint(
+    "Calculator",
+    __name__,
+    url_prefix="/assignments/2/calculator"
+)
+
+@blueprint.route("/")
 def root():
     return """
         <lu style="font-size: 2rem;">
@@ -18,26 +28,26 @@ def root():
 def can_int(n: float | int) -> float | int:
     return _ if n - (_ := int(n)) == 0 else n
 
-@calculator_blueprint.route("/addition/<int:a>/<int:b>")
+@blueprint.route("/addition/<int:a>/<int:b>")
 def addition(a: int, b: int):
     return f"{a} + {b} = {a + b}"
 
-@calculator_blueprint.route("/subtraction/<int:a>/<int:b>")
+@blueprint.route("/subtraction/<int:a>/<int:b>")
 def subtraction(a: int, b: int):
     return f"{a} - {b} = {a - b}"
 
-@calculator_blueprint.route("/multiplication/<int:a>/<int:b>")
+@blueprint.route("/multiplication/<int:a>/<int:b>")
 def multiplication(a: int, b: int, ):
     return f"{a} * {b} = {a * b}"
 
-@calculator_blueprint.route("/division/<int:a>/<int:b>")
+@blueprint.route("/division/<int:a>/<int:b>")
 def division(a: int, b: int):
     return f"{a} / {b} = {'undefined' if b == 0 else can_int(a / b)}"
 
-@calculator_blueprint.route("/power/<int:a>/<int:b>")
+@blueprint.route("/power/<int:a>/<int:b>")
 def power(a: int, b: int, ):
     return f"{a} ** {b} = {a ** b}"
 
-@calculator_blueprint.route("/modulo/<int:a>/<int:b>")
+@blueprint.route("/modulo/<int:a>/<int:b>")
 def modulo(a: int, b: int, ):
     return f"{a} % {b} = {'undefined' if b == 0 else a % b}"

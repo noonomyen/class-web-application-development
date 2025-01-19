@@ -1,12 +1,16 @@
 import pathlib
 import sys
 
-app_dir = pathlib.Path(__file__).parent.resolve()
-sys.path.append(str(app_dir))
+sys.path.append(str(pathlib.Path(__file__).parent.resolve()))
+
+from api import config
+
+is_main = __name__ == "__main__"
+config.IS_SERVERLESS = not is_main
 
 from api import app
 
-if __name__ == "__main__":
+if is_main:
     if "--debug" in sys.argv:
         app.run(debug=True)
     else:
