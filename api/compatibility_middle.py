@@ -25,7 +25,7 @@ def compatibility_middle(app: Flask, blueprint: Blueprint, serverless: bool):
     @blueprint.before_request
     def _compatibility_middleware():
         if config.IS_SERVERLESS and not serverless:
-            return f"This route is not supported in serverless mode.<br>Path: {blueprint.import_name}.{blueprint.url_prefix}", 404
+            return f"This route is not supported in serverless mode.<br>Name: {blueprint.import_name}<br>Path: {blueprint.url_prefix}", 404
 
     assert blueprint.url_prefix
     status_pages.append((blueprint.name, blueprint.url_prefix, "Unsupport" if config.IS_SERVERLESS and not serverless else "OK"))
