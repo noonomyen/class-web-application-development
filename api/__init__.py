@@ -31,18 +31,4 @@ app.register_blueprint(dummy_blueprint, url_prefix="/assignments/test")
 
 @app.route("/")
 def index():
-    return """
-    <html>
-        <head>
-            <title>CWAD Assignments</title>
-        </head>
-        <body>
-            <h1>Welcome to Assignment archive of Class Web Application Development</h1>
-            <p>
-                <a href="https://github.com/noonomyen/class-web-application-development">
-                    <button>Click to visit the repository</button>
-                </a>
-            </p>
-        </body>
-    </html>
-    """
+    return redirect("index.html")

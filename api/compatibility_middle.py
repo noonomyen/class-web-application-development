@@ -24,11 +24,11 @@ def _dummy_blueprint_root():
 def compatibility_middle(app: Flask, blueprint: Blueprint, serverless: bool):
     @blueprint.before_request
     def _compatibility_middleware():
-        if (not config.IS_SERVERLESS) and serverless:
+        if config.IS_SERVERLESS and not serverless:
             return f"This route is not supported in serverless mode.<br>Path: {blueprint.import_name}.{blueprint.url_prefix}", 404
 
     assert blueprint.url_prefix
-    status_pages.append((blueprint.name, blueprint.url_prefix, "Unsupport" if (not config.IS_SERVERLESS) and serverless else "OK"))
+    status_pages.append((blueprint.name, blueprint.url_prefix, "Unsupport" if config.IS_SERVERLESS and not serverless else "OK"))
     app.register_blueprint(blueprint)
 
 compatibility_status_page = Blueprint("Compatibility Status", __name__)
