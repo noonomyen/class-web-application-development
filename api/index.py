@@ -6,10 +6,6 @@ import sys
 # api.__file__
 sys.path.append(str(pathlib.Path(__file__).parent.resolve().joinpath("..")))
 
-from api import config
-
-config.IS_SERVERLESS = True
-
 from api import app
 from flask import Flask
 

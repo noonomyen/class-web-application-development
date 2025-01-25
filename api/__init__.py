@@ -1,7 +1,7 @@
-from os import environ
 from flask import Flask, redirect
 from pathlib import Path
 from api.compatibility_middle import compatibility_middle, compatibility_status_page
+from api import config
 
 __all__ = ["app"]
 
@@ -14,7 +14,7 @@ app = Flask(
     template_folder="../templates"
 )
 
-app.secret_key = environ["SECRET_KEY"] if "SECRET_KEY" in environ else open("SECRET_KEY.txt", "r").read()
+app.secret_key = config.SECRET_KEY
 
 curr_dir = Path(__file__).parent.resolve()
 
