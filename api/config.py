@@ -1,8 +1,12 @@
 from os import environ
 from pathlib import Path
-from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).parent.resolve().parent.joinpath(".env"))
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv(Path(__file__).parent.resolve().parent.joinpath(".env"))
+except ImportError:
+    pass
 
 __all__ = [
     "IS_SERVERLESS",

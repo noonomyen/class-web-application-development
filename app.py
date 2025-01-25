@@ -3,13 +3,9 @@ import sys
 
 sys.path.append(str(pathlib.Path(__file__).parent.resolve()))
 
-from api import config
-
-is_main = __name__ == "__main__"
-
 from api import app
 
-if is_main:
+if __name__ == "__main__":
     if "--debug" in sys.argv:
         app.run(debug=True)
     else:
