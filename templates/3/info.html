@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <hr>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img src="{{ img_url }}" alt="{{ obj[0][1] }}" class="card-img-top" style="background-color: gray;">
+                </div>
+            </div>
+            <div class="col-md-8 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <h2 class="text-secondary">{{ title }} Details</h2>
+                        </div>
+                        {% for name, value in obj %}
+                        <hr>
+                        <div class="row">
+                            <div class="col"><h3>{{ name }}:</h3></div>
+                            <div class="col">
+                                <h3 class="text-secondary float-end">{{ value }}</h3>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <a href="{{ url_for('football_club.page', target=target) }}" class="btn btn-outline-success">
+                                    <i class="bi bi-skip-backward-circle"></i>
+                                    Back to {{ title }}s Page
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a href="{{ url_for('football_club.page_update', target=target, id=id) }}" class="btn btn-outline-success float-end">
+                                    <i class="bi bi-person-fill-check"></i>
+                                    Update {{ title }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

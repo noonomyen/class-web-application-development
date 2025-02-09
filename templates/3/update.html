@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{ edit }} {{ target.capitalize() }}
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1>{{ title }}</h1>
+        <hr>
+        <div class="card">
+            <div class="card-header text-bg-success">
+                {{ edit }} {{ target.capitalize() }}
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% for key, name, options, value in fields %}
+                        <div class="mb-3">
+                            {% if key == "id" %}
+                                <input type="hidden" id="{{ key }}" name="{{ key }}" value="{{ value }}" required>
+                            {% elif options %}
+                                <label class="form-label" for="{{ key }}">{{ name }}</label>
+                                <select class="form-control" id="{{ key }}" name="{{ key }}" required>
+                                    <option value="" disabled selected>Select an option</option>
+                                    {% for opt_id, opt_name in options %}
+                                        <option value="{{ opt_id }}"{% if opt_id == value %} selected{% endif %}>{{ opt_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            {% else %}
+                                <label class="form-label" for="{{ key }}">{{ name }}</label>
+                                <input type="text" class="form-control" id="{{ key }}" name="{{ key }}" value="{{ value }}" required>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for category, message in messages %}
+                                    {% if category == 'error' %}
+                                        {{ message }}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+                    {% if fields %}
+                        <button type="submit" class="btn btn-outline-success">
+                            <i class="bi bi-pencil-square"></i>
+                            {{ edit }}
+                        </button>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
