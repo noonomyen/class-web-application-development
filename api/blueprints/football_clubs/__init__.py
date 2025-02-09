@@ -83,6 +83,7 @@ def page_add_update(target: str):
             try:
                 name = request.form["name"]
                 image_url = request.form["image_url"]
+                assert len(name) < 256 and len(image_url) < 2048
             except:
                 return abort(400)
 
@@ -108,6 +109,7 @@ def page_add_update(target: str):
         if request.method == "POST":
             try:
                 data = [(x, int(request.form[x]) if x.endswith("_id") else request.form[x]) for x in ("name", "club_id", "position_id", "nationality_id", "image_url")]
+                assert len(data[0][1]) < 256 and len(data[4][1]) < 2048 # type: ignore
             except:
                 return abort(400)
 
